@@ -1,4 +1,4 @@
-import { createClient } from "../../supabaseClient";
+import supabase from "../../supabaseClient";
 
 export default async function BusinessPage({ params }) {
 
