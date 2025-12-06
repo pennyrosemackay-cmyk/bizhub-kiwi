@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import supabase from "./supabaseClient";
+import supabase from "import supabase from "../supabaseClient";
+";
 
 export default function HomePage() {
   const [businesses, setBusinesses] = useState([]);
