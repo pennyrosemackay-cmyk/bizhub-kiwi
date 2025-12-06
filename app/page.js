@@ -6,7 +6,9 @@ export default async function Home() {
     .select('*')
     .limit(10)
 
-  console.log(error)
+  if (error) {
+    console.error('Supabase error:', error)
+  }
 
   return (
     <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
