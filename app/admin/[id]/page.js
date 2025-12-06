@@ -1,7 +1,5 @@
 "use client";
-
 import supabase from '@/lib/supabaseClient';
-
 import { useState, useEffect } from "react";
 
 export default function AdminBusiness({ params }) {
