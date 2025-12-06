@@ -18,8 +18,41 @@ export default function HomePage() {
   return (
     <>
       {/* HERO – Your new "impressive front door" */}
-      <section className="min-h-screen bg-gradient-to-b from-sky-50 to-white flex items-center">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+{/* Inside the hero section — replace the old CTA area */}
+<div className="max-w-4xl mx-auto mt-16 bg-white rounded-3xl shadow-2xl p-8 lg:p-12 border-4 border-sky-100">
+  <h2 className="text-4xl lg:text-5xl font-black text-center mb-8">
+    First month <span className="text-sky-600">FREE</span> — then just $29/month
+  </h2>
+  <p className="text-xl text-center text-gray-700 mb-10">
+    Cheaper than a coffee a day. Cancel anytime. No lock-in contracts.
+  </p>
+
+  <div className="grid md:grid-cols-3 gap-6 mb-10">
+    <div className="text-center">
+      <div className="text-5xl font-black text-red-600 line-through">$299</div>
+      <div className="text-2xl font-bold">Typical NZ website</div>
+    </div>
+    <div className="text-6xl font-black text-sky-600">→</div>
+    <div className="text-center">
+      <div className="text-5xl font-black text-green-600">$29</div>
+      <div className="text-2xl font-bold">Your BizHub page</div>
+      <div className="text-lg text-gray-600">Save $270/month</div>
+    </div>
+  </div>
+
+  <div className="flex flex-col sm:flex-row gap-6 justify-center">
+    <Link href="/join" className="px-12 py-6 bg-sky-600 hover:bg-sky-700 text-white text-2xl font-bold rounded-full shadow-xl transform hover:scale-105 transition-all">
+      Start Free Trial → Live in 5 Minutes
+    </Link>
+    <Link href="/pro" className="px-12 py-6 border-4 border-orange-500 text-orange-600 hover:bg-orange-50 text-xl font-bold rounded-full">
+      Or get Pro Setup for $149 (we build it for you)
+    </Link>
+  </div>
+
+  <p className="text-center mt-8 text-gray-600">
+    Powered by Locals, for Locals ❤️ 100% NZ owned
+  </p>
+</div>
           {/* Logo + Tagline */}
           <div className="mb-8">
             <div className="flex justify-center mb-6">
