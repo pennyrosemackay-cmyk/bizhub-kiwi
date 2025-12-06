@@ -1,7 +1,6 @@
 import { createClient } from "../../supabaseClient";
 
 export default async function BusinessPage({ params }) {
-  const supabase = createClient();
 
   const { data: business } = await supabase
     .from("businesses")
