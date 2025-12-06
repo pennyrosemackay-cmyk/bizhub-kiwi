@@ -3,8 +3,7 @@ import supabase from "../../supabaseClient";
 import { useState, useEffect } from "react";
 
 export default function AdminBusiness({ params }) {
-  const supabase = createClient();
-
+  
   const [business, setBusiness] = useState(null);
 
   useEffect(() => {
