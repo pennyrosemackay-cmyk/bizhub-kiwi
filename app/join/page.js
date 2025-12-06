@@ -1,5 +1,5 @@
 "use client";
-import { createClient } from "@/utils/supabaseClient";
+import supabase from "../supabaseClient";
 import { useState } from "react";
 
 export default function JoinPage() {
