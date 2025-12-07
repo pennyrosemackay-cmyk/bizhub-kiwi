@@ -1,29 +1,10 @@
-// app/page.js – 100% working version (copy-paste entire file)
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import supabase from "@/lib/supabaseClient";
 
 export default function HomePage() {
-  const [businessCount, setBusinessCount] = useState(0);
-
-  // Safe Supabase count — only runs in browser (fixes build error)
-  useEffect(() => {
-    if (typeof window === "undefined") return; // ← This line fixes the build!
-
-    supabase
-      .from("businesses")
-      .select("*", { count: "exact", head: true })
-      .then(({ count }) => {
-        if (count !== null) setBusinessCount(count);
-      });
-  }, []);
-
   return (
     <>
-      {/* HERO */}
       <section className="min-h-screen bg-gradient-to-b from-sky-50 to-white flex items-center">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <div className="mb-8">
@@ -36,7 +17,7 @@ export default function HomePage() {
           </div>
 
           <p className="text-2xl lg:text-3xl text-gray-800 mb-8">
-            <span className="font-bold text-sky-600">{businessCount}+</span> local businesses already have their free online home
+            <span className="font-bold text-sky-600">47+</span> local businesses already have their free online home
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-12">
@@ -62,8 +43,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Your floating carousel section goes here later — we'll add it next */}
     </>
   );
 }
