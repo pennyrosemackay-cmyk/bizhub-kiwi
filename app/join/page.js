@@ -1,49 +1,33 @@
 "use client";
 
 import supabase from '@/lib/supabaseClient';
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function JoinPage() {
+  const [name, setName] = useState("");
 
-  const [form, setForm] = useState({
-    name: "",
-    category: "",
-    email: "",
-    phone: "",
-    description: ""
-  });
-
-  async function submitForm(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { error } = await supabase.from("businesses").insert([form]);
-
-    if (error) {
-      alert("Error adding business");
-    } else {
-      alert("Business added!");
-    }
-  }
+    const { error } = await supabase.from("businesses").insert({ name });
+    if (!error) alert("Success! Your page is ready.");
+  };
 
   return (
-    <main className="max-w-xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-4">List Your Business</h1>
-
-      <form onSubmit={submitForm}>
-        <input className="border p-2 w-full mb-3" placeholder="Business Name"
-          onChange={(e) => setForm({ ...form, name: e.target.value })} />
-
-        <input className="border p-2 w-full mb-3" placeholder="Category"
-          onChange={(e) => setForm({ ...form, category: e.target.value })} />
-
-        <textarea className="border p-2 w-full mb-3" placeholder="Description"
-          onChange={(e) => setForm({ ...form, description: e.target.value })} />
-
-        <button className="px-4 py-2 text-white rounded-lg"
-          style={{ background: "var(--brand-red)" }}>
-          Submit
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-lg">
+        <h1 className="text-3xl font-bold mb-6">Join BizHub.Kiwi</h1>
+        <input
+          type="text"
+          placeholder="Your business name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="w-full p-3 border rounded mb-4"
+          required
+        />
+        <button type="submit" className="w-full bg-sky-600 text-white py-3 rounded font-bold">
+          Create My Free Page
         </button>
       </form>
-    </main>
+    </div>
   );
 }
