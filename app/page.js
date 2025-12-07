@@ -134,6 +134,19 @@ function HandshakeIcon({ className }: { className?: string }) {
       <path d="M80 80 L120 120 M120 80 L80 120" stroke="white" strokeWidth="12" strokeLinecap="round"/>
       <circle cx="70" cy="70" r="12" fill="white"/>
       <circle cx="130" cy="130" r="12" fill="white"/>
+ 
+<section className="relative py-24 bg-gradient-to-t from-gray-900 to-black overflow-hidden">
+  <div className="absolute inset-0 bg-black/50" />
+  
+  <div className="relative text-center mb-16">
+    <h2 className="text-5xl md:text-7xl font-black text-white mb-4">
+      Join Kiwi Businesses Already Thriving
+    </h2>
+    <p className="text-xl text-white/80">Your page will look this good — in minutes</p>
+  </div>
+
+  <InfiniteCarousel />
+</section>
     </svg>
   );
 }
