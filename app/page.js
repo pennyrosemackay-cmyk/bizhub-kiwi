@@ -9,12 +9,15 @@ import supabase from "@/lib/supabaseClient";
 export default function HomePage() {
   const [businessCount, setBusinessCount] = useState(0);
 
+  // Safe Supabase count — only runs in browser (fixes build error)
   useEffect(() => {
+    if (typeof window === "undefined") return; // ← This line fixes the build!
+
     supabase
       .from("businesses")
       .select("*", { count: "exact", head: true })
       .then(({ count }) => {
-        if (count) setBusinessCount(count);
+        if (count !== null) setBusinessCount(count);
       });
   }, []);
 
