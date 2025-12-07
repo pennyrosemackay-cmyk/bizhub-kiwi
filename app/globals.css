@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add your custom colors if needed */
+:root {
+  --brand-green: #22c55e;
+  --brand-red: #ef4444;
+}
