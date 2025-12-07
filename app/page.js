@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import supabase from "../lib/supabaseClient";
+import { useEffect, useState } from "react";
+import supabase from "../supabaseClient";
 
 export default function HomePage() {
   const [businesses, setBusinesses] = useState([]);
@@ -10,10 +10,11 @@ export default function HomePage() {
     async function loadData() {
       const { data, error } = await supabase
         .from("businesses")
-        .select("*");
+        .select("*")
+        .order("name", { ascending: true });
 
       if (error) {
-        console.error(error);
+        console.error("Error fetching businesses:", error);
       } else {
         setBusinesses(data);
       }
@@ -22,44 +23,40 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="bg-gradient-to-r from-green-50 to-green-100 min-h-screen p-8">
+    <main className="min-h-screen bg-gray-50 p-6">
       {/* Hero Section */}
       <section className="text-center mb-12">
-        <h1 className="text-5xl font-bold mb-4 text-green-800">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
           BizHub.Kiwi
         </h1>
-        <p className="text-xl text-green-700">
+        <p className="text-lg md:text-xl text-gray-700 mb-6">
           Kiwi Businesses. Powered by Locals, for Locals.
         </p>
-        <p className="text-md text-green-600 mt-2">
-          47+ businesses already live
-        </p>
+        <p className="text-gray-600 mb-6">{businesses.length}+ businesses already live</p>
         <a
           href="/join"
-          className="mt-6 inline-block px-6 py-3 bg-green-700 text-white rounded-lg hover:bg-green-800 transition"
+          className="inline-block px-6 py-3 bg-red-600 text-white font-semibold rounded-lg shadow hover:bg-red-700 transition"
         >
           Claim Your Free Page
         </a>
       </section>
 
-      {/* Business Listings */}
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {businesses.length === 0 && (
-          <p className="text-green-800">No businesses yet</p>
-        )}
+      {/* Business Cards Grid */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {businesses.length === 0 && <p className="col-span-full text-center">No businesses yet</p>}
         {businesses.map((b) => (
           <div
             key={b.id}
-            className="border rounded-lg p-4 shadow hover:shadow-lg transition bg-white"
+            className="bg-white rounded-lg shadow hover:shadow-lg transition p-6 flex flex-col"
           >
             <h2 className="text-xl font-semibold mb-2">{b.name}</h2>
-            <p className="text-green-700 mb-1">{b.category}</p>
-            <p className="text-green-600">{b.description}</p>
+            {b.category && <p className="text-gray-600 mb-2">{b.category}</p>}
+            {b.description && <p className="text-gray-700 flex-grow">{b.description}</p>}
             <a
               href={`/business/${b.id}`}
-              className="mt-2 inline-block text-green-800 hover:underline"
+              className="mt-4 inline-block text-red-600 font-semibold hover:underline"
             >
-              View Page →
+              View Page
             </a>
           </div>
         ))}
